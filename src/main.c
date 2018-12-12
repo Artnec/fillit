@@ -61,18 +61,18 @@ int		read_file(char *buf, char *file_name)
 int		main(int argc, char **argv)
 {
 	if (argc != 2)
-		printf("usage: %s file_name\n", argv[0]);
-	else
 	{
-		char	buf[550];
-		int		size;
-		if ((size = read_file(buf, argv[1])) == -1)
-			return -1;
-
-		t_tetro		tetros[size / 21];
-		check_and_parse_tetreminos(buf, size, tetros);
-
-		fillit(tetros, size / 21);
+		printf("usage: %s file_name\n", argv[0]);
+		return 1;
 	}
+	char	buf[550];
+	int		size;
+	if ((size = read_file(buf, argv[1])) == -1)
+		return 2;
+
+	t_tetro		tetros[size / 21];
+	check_and_parse_tetreminos(buf, size, tetros);
+
+	fillit(tetros, size / 21);
 	return 0;
 }
